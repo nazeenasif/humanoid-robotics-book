@@ -1,0 +1,148 @@
+# VSLAM Configuration for Humanoid Robot in Isaac Sim
+
+# General VSLAM Parameters
+vslam:
+  # Camera parameters
+  camera:
+    resolution: [640, 480]
+    fov: 90.0  # Field of view in degrees
+    fps: 30
+    distortion_model: "plumb_bob"
+    distortion_coefficients: [0.0, 0.0, 0.0, 0.0, 0.0]
+    intrinsic_matrix: [320.0, 0.0, 320.0, 0.0, 320.0, 240.0, 0.0, 0.0, 1.0]
+
+  # Feature detection parameters
+  feature_detection:
+    detector_type: "ORB"
+    max_features: 2000
+    scale_factor: 1.2
+    levels: 8
+    edge_threshold: 31
+    patch_size: 31
+    fast_threshold: 20
+
+  # Tracking parameters
+  tracking:
+    max_tracking_features: 100
+    min_tracking_features: 50
+    max_reproj_error: 4.0
+    min_triangulation_angle: 1.0
+    min_keyframe_parallax: 10.0
+    keyframe_culling_ratio: 0.8
+
+  # Mapping parameters
+  mapping:
+    max_map_points: 10000
+    min_observation_count: 3
+    max_observation_distance: 10.0
+    outlier_rejection_threshold: 3.0
+    map_cleanup_threshold: 0.1
+
+  # Loop closure parameters
+  loop_closure:
+    enabled: true
+    detection_threshold: 0.3
+    min_matches_for_verification: 20
+    max_num_candidates: 5
+    geometric_verification_threshold: 3.0
+    temporal_consistency_window: 20
+
+  # Optimization parameters
+  optimization:
+    bundle_adjustment:
+      enabled: true
+      max_iterations: 100
+      convergence_threshold: 1e-6
+      trust_region_radius: 100.0
+    graph_optimization:
+      enabled: true
+      max_iterations: 50
+      lambda_initial: 1e-4
+      max_lambda: 1e4
+
+  # Visual-inertial parameters (if using IMU)
+  visual_inertial:
+    enabled: true
+    imu_rate: 400  # Hz
+    gravity_magnitude: 9.81
+    acceleration_noise_density: 0.017
+    gyro_noise_density: 0.001
+    acceleration_random_walk: 0.0001
+    gyro_random_walk: 0.0001
+
+  # Performance parameters
+  performance:
+    max_processing_time_ms: 33.3  # For 30 FPS
+    max_memory_usage_mb: 1024
+    enable_multithreading: true
+    num_threads: 4
+    enable_gpu_acceleration: true
+
+  # Debug parameters
+  debug:
+    enable_visualization: true
+    visualization_rate: 10  # Hz
+    save_trajectory: true
+    trajectory_format: "TUM"
+    enable_logging: true
+    log_level: "INFO"
+
+# Robot-specific parameters for humanoid
+robot:
+  # Physical properties that affect VSLAM
+  height: 1.5  # meters
+  base_frame: "base_link"
+  camera_frame: "camera_link"
+  imu_frame: "imu_link"
+
+  # Movement constraints that affect tracking
+  max_linear_velocity: 1.0  # m/s
+  max_angular_velocity: 0.5  # rad/s
+  min_translation_for_keyframe: 0.1  # m
+  min_rotation_for_keyframe: 0.1  # rad
+
+# Environment parameters
+environment:
+  # Parameters that affect VSLAM performance in different environments
+  texture_richness: "high"  # low, medium, high
+  lighting_conditions: "dynamic"  # static, dynamic
+  dynamic_objects: "moderate"  # none, light, moderate, heavy
+  min_depth: 0.2  # meters
+  max_depth: 10.0  # meters
+
+# Isaac Sim specific parameters
+isaac_sim:
+  # Simulation-specific settings
+  use_ground_truth_odometry: false
+  sensor_noise:
+    camera:
+      enabled: true
+      noise_model: "gaussian"
+      noise_std: 0.5
+    imu:
+      enabled: true
+      noise_density: [0.01, 0.01, 0.01, 0.001, 0.001, 0.001]
+
+# Output parameters
+output:
+  # Configuration for output data
+  trajectory_file: "trajectory.txt"
+  map_file: "map.ply"
+  keyframes_file: "keyframes.txt"
+  feature_tracks_file: "feature_tracks.txt"
+  enable_pose_publishing: true
+  pose_topic: "/vslam/pose"
+  map_topic: "/vslam/map"
+  feature_topic: "/vslam/features"
+
+# Evaluation parameters
+evaluation:
+  # Parameters for evaluating VSLAM performance
+  compute_ate: true
+  compute_rpe: true
+  ate_align_method: "sim3"
+  rpe_align_method: "se3"
+  rpe_only_scale: false
+  ground_truth_topic: "/ground_truth/pose"
+  save_evaluation_results: true
+  evaluation_output_file: "evaluation_results.txt"

@@ -1,0 +1,28 @@
+# Gitignore for Humanoid Robotics Book Project
+
+# Node.js / Docusaurus
+node_modules/
+.docusaurus/
+build/
+*.log
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+*.egg-info/
+
+# Universal
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+
+# Docusaurus build outputs (added by Claude Code)
+/build
+/node_modules
