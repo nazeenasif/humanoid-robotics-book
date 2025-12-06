@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "SlashCommand(/sp.constitution --input-file README.md --output-file constitution.md --prompt \"Read README.md and rewrite  it as a Spec-Kit Plus constitution for this project. Keep all project details, rules, standards, constraints, and success criteria. Format properly in Markdown.\")",
+      "Bash(.specify/scripts/bash/create-phr.sh:*)",
+      "SlashCommand(/sp.specify --input-file README.md --output-file specify.md)",
+      "Bash(mkdir:*)",
+      "Bash(npm run build)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

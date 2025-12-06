@@ -1,0 +1,41 @@
+{
+  // Extends the default Docusaurus TypeScript configuration.
+  // This allows Docusaurus to understand your project's TypeScript setup.
+  "extends": "@tsconfig/docusaurus/tsconfig.json",
+  "compilerOptions": {
+    // Ensure consistent casing in file paths.
+    "forceConsistentCasingInFileNames": true,
+    // Enable strict type-checking options.
+    "strict": true,
+    // Generates a declaration map for easier debugging in development.
+    // "declarationMap": true, // Uncomment if needed for specific debugging scenarios
+    // Specify the module code generation method.
+    "module": "ESNext",
+    // Specify the object to return when 'import * as' is used.
+    "esModuleInterop": true,
+    // Enable all strict type-checking options.
+    "strictNullChecks": true,
+    // Enables the use of decorators in TypeScript. Required for some frameworks.
+    "experimentalDecorators": true,
+    // Enables emit interoperability between CommonJS and ES Modules.
+    "allowSyntheticDefaultImports": true,
+    // Specifies the module resolution strategy.
+    "moduleResolution": "Bundler", // Or "Node" depending on your preference/setup
+    // Skip type checking of all declaration files.
+    "skipLibCheck": true,
+    // Base URL for resolving non-relative module names.
+    "baseUrl": ".",
+    // A series of entries that re-map imports to lookup locations relative to the `baseUrl`.
+    "paths": {
+      "@site/*": ["./*"]
+    },
+    // Set the JavaScript language version for emitted JavaScript and include library definitions.
+    "target": "ES2022",
+    // Specify what JSX code is generated.
+    "jsx": "react-jsx"
+  },
+  // Specify files and directories to include for compilation.
+  "include": ["src", "docs", ".docusaurus", "docusaurus.config.ts", "sidebars.js"],
+  // Specify files and directories to exclude from compilation.
+  "exclude": ["node_modules", "build", "dist", "history", "specs", "references"]
+}
