@@ -9,15 +9,15 @@ const config: Config = {
   trailingSlash: false,
 
   // Set the production url of your site here
-  url: 'https://humanoid-robotics-book.github.io',
+  url: 'https://humanoid-robotics-book.vercel.app',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/humanoid-robotics-book/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'humanoid-robotics-book',
-  projectName: 'humanoid-robotics-book',
+  // organizationName: 'humanoid-robotics-book',
+  // projectName: 'humanoid-robotics-book',
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
