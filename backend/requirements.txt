@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+qdrant-client
+# psycopg2-binary (add a compatible version for your Python environment if needed)
+asyncpg
+google-generativeai
+sentence-transformers
+# openai
+python-dotenv
+tiktoken
